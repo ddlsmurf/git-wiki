@@ -3,6 +3,7 @@
 require 'fileutils'
 require 'environment'
 require 'sinatra/lib/sinatra' # using submodule
+require 'authorization'
 
 # allow subdirectories for page, override the default regex, uses sinatra mod
 OPTS_RE = { :param_regex => {
@@ -10,6 +11,14 @@ OPTS_RE = { :param_regex => {
     :page_files => ".+#{ATTACH_DIR_SUFFIX}",  # foo/bar_files
     :rev => '[a-f0-9]{40}' }  # 40 char guid
 } unless defined?(OPTS_RE)
+
+helpers do
+  include Sinatra::Authorization
+end
+
+# before do
+#   require_administrative_privileges
+# end
 
 get('/') { redirect "/#{HOMEPAGE}" }
 
