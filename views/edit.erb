@@ -28,6 +28,15 @@
   <% end %>
 </div>
 
+<% if @page.preview? %>
+  <div class="content preview">
+    <div class="header">
+      Preview mode
+    </div>
+    <%= @page.body %>
+  </div>
+<% end %>
+
 <div class="content">
   <div id="editor-choices">
     <a id="editor-none" href="#" class="hide">Hide Markdown toolbar</a>
@@ -45,7 +54,10 @@
     Message:
     <textarea name="message" rows="4" id="message_textarea"></textarea>
     <input type="hidden" name="content_type" value="markdown"/>
-    <p class="right"><input type="submit" value="Save" class="submit" /></p>
+    <p class="right">
+      <input name="submit" type="submit" value="Preview" class="submit" />
+      <input name="submit" type="submit" value="Save" class="submit" />
+    </p>
   </form>
 </div>
 

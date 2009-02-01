@@ -43,6 +43,15 @@ class Page
     end
   end
 
+  def with_preview(value)
+    @raw_body = value
+    @preview = true
+  end
+
+  def preview?
+    @preview
+  end
+
   def update(content, message=nil)
     dirname = File.dirname(@filename)
     FileUtils.mkdir_p(dirname) if(!File.exist?(dirname)) # create subdirectory if needed

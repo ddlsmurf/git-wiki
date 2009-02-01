@@ -53,8 +53,13 @@ end
 
 post '/e/:page', OPTS_RE do
   @page = Page.new(params[:page])
-  @page.update(params[:body], params[:message])
-  redirect '/' + @page.basename
+  if params[:submit] == "Preview"
+    @page.with_preview params[:body]
+    show(:edit, @page.title)
+  else
+    @page.update(params[:body], params[:message])
+    redirect '/' + @page.basename
+  end
 end
 
 post '/eip/:page', OPTS_RE do
