@@ -16,4 +16,13 @@ unless File.exists?(GIT_REPO) && File.directory?(GIT_REPO)
   Git.init(GIT_REPO)
 end
 
+class Git::Lib
+  def commit(message, opts = {})
+    arr_opts = ["-m '#{message}'"]
+    arr_opts << '-a' if opts[:add_all]
+    arr_opts << "--author=#{opts[:author]}" if opts[:author]
+    command('commit', arr_opts)
+  end
+end
+
 $repo = Git.open(GIT_REPO)
