@@ -20,7 +20,7 @@ module Sinatra
 
   def authorize(username, password)
     # Insert your logic here to determine if username/password is good
-    return true if User.all.count.zero?
+    return true if User.all.size.zero?
     User.authenticate(username, password)
   end
 
