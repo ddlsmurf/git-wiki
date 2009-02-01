@@ -51,7 +51,7 @@ class Page
     commit_message += ' : ' + message if message && message.length > 0
     begin
       $repo.add(@name)
-      $repo.commit(commit_message)
+      $repo.commit(commit_message, :author => User.current_user.fullname)
     rescue
       nil
     end
@@ -73,7 +73,7 @@ class Page
       begin
         $repo.remove(@filename)
         $repo.remove(@attach_dir, { :recursive => true }) if attach_dir_exists
-        $repo.commit(commit_message)
+        $repo.commit(commit_message, :author => User.current_user.fullname)
       rescue
         nil
       end
@@ -184,7 +184,7 @@ class Page
     commit_message = "uploaded #{filename} for #{@basename}"
     begin
       $repo.add(new_file)
-      $repo.commit(commit_message)
+      $repo.commit(commit_message, :author => User.current_user.fullname)
     rescue
       nil
     end
@@ -198,7 +198,7 @@ class Page
       commit_message = "removed #{file} for #{@basename}"
       begin
         $repo.remove(file_path)
-        $repo.commit(commit_message)
+        $repo.commit(commit_message, :author => User.current_user.fullname)
       rescue
         nil
       end

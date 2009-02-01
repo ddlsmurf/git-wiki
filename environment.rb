@@ -21,7 +21,7 @@ class Git::Lib
   def commit(message, opts = {})
     arr_opts = ["-m '#{message}'"]
     arr_opts << '-a' if opts[:add_all]
-    arr_opts << "--author=#{opts[:author]}" if opts[:author]
+    arr_opts << %[--author"=#{opts[:author]}"] if opts[:author]
     command('commit', arr_opts)
   end
 end
