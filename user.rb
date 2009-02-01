@@ -1,3 +1,6 @@
+
+require 'sha1'
+
 class User
 
   def self.from_line(line)
@@ -37,7 +40,9 @@ class User
   end
 
   def authenticate(pass)
-    pass == @pass
+    user_sha1 = SHA1.new(@name).to_s
+    pass_sha1 = SHA1.new([user_sha1,pass].join(':')).to_s
+    @pass == pass_sha1
   end
 
   attr_reader :name, :fullname
