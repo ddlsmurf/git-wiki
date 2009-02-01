@@ -16,9 +16,9 @@ helpers do
   include Sinatra::Authorization
 end
 
-# before do
-#   require_administrative_privileges
-# end
+before do
+  require_administrative_privileges
+end
 
 get('/') { redirect "/#{HOMEPAGE}" }
 

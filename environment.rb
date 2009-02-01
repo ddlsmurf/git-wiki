@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'extensions'
 require 'page'
+require 'user'
 
 %w(git maruku).each do |gem|
   require_gem_with_feedback gem

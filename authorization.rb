@@ -20,7 +20,7 @@ module Sinatra
 
   def authorize(username, password)
     # Insert your logic here to determine if username/password is good
-    username = 'test' && password == 'test'
+    User.authenticate(username, password)
   end
 
   def require_administrative_privileges
