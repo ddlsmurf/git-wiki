@@ -13,6 +13,8 @@
         document.write(time_ago_in_words(<%= c.committer_date.for_time_ago_in_words %>) + ' ago');
         </script>
         &mdash;
+	<%= c.author.name %>
+        &mdash;
         <a href="/h/<%= @page.basename %>/<%= c.sha %>"><%= c.message %></a>
         <% unless @page.history.first == c %>
          &bull; <a href="/d/<%= @page.basename %>/<%= c.sha %>">diff</a>
